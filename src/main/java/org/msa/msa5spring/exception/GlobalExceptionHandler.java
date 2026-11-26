@@ -1,5 +1,6 @@
 package org.msa.msa5spring.exception;
 
+import lombok.extern.slf4j.Slf4j;
 import org.msa.msa5spring.response.GlobalResponseDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,8 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Slf4j
+//이거 있으면 어쩌고
 @RestControllerAdvice
 public class GlobalExceptionHandler {
     // ----------------------------------------
@@ -83,6 +86,15 @@ public class GlobalExceptionHandler {
     //어노테이션 문법 제약이 있어서 new로 생성은 안됨
     //내가 핸들링 하고싶은 객체 명을 적고 객체의 리터럴을 생성하는 .class라는 걸 이용해서 어노테이션에 전달
     public ResponseEntity<GlobalResponseDTO<Void>> handle(Exception e){
+        log.trace("트레이스 로깅");
+        log.debug("디버그 로깅");
+        log.info("인포 로깅");
+        log.warn("워닝 로깅");
+        log.error("에러 로깅");
+        //log = 롬복을 받아서 사용 가능한 변수
+        //로깅 레벨 설정에 따라 출력값이 다름
+        //이 코드가 있는 메서드를 반드시 실행을 시켜야 에러 결과가 나온다
+        //로그가 많이 찍히는건 야믈 루트 시작점때문임
         return ResponseEntity
                 .status(500)
                 .body(

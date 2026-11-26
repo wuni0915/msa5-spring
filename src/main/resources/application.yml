@@ -5,3 +5,12 @@ spring:
     error:
       include-stacktrace: always
       include-message: always
+logging:
+  file:
+    name: logs/error.log
+  level:
+    # error > warn > info > debug > trace 에러레벨
+    root: warn
+    org.msa.msa5spring: debug
+#    org.msa.msa5spring.controller: error
+debug: false
