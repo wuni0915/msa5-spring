@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<mapper namespace="org.msa.msa5spring.mapper.EmployeeMapper">
+<!--    매퍼 인터페이스-->
+    <resultMap id = "employeeResultMap" type="org.msa.msa5spring.entity.employee">
+<!--    타입은 엔티티와 DB를 매핑 시켜주는것임    -->
+        <id column = "emp_id" property="empId"/>
+<!--        pk를 아이디 태그로 만든다/pk컬럼을 매핑할때 리절트맵>아이디 라는 컬럼 이용-->
+        <result column = "name" property="name"/>
+<!--        일반 컬럼을 매핑 설정할때 쓰는 태그다/ 리절트 태그-->
+        <result column = "birth" property="birth"/>
+        <result column = "gender" property="gender"/>
+        <result column = "hire_at" property="hire_at"/>
+        <result column = "fire_at" property="fire_at"/>
+        <result column = "sup_id" property="sup_id"/>
+        <result column = "created_at" property="created_at"/>
+        <result column = "updated_at" property="updated_at"/>
+        <result column = "deleted_at" property="deleted_at"/>
+<!--        DB와 대응하여 만듦-->
+    </resultMap>
+</mapper>

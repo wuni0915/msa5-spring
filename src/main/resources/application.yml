@@ -3,8 +3,27 @@ spring:
     name: msa5-spring
   web:
     error:
-      include-stacktrace: always
-      include-message: always
+      include-stacktrace: never
+      include-message: never
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:dbsample}
+#    DB호스트가 없는 경우 로컬 호스트가 기본값으로 설정된다라는 뜻
+#매핑을 자동으로 해주지 않음, 컴파일 할 때 시스템 환경 변수라는것을 ㅏㄱ져와서 ${}여기에 세팅.
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+#퍼블릭인데 괜찮나
+#프로젝트의 루트에 보통 파일을 하나 만들고 .env 라는 이름 짓기
+#.env는 절대 올리면 안됨 깃이그노어로 제외시켜두기 (절대 형상관리 하면 안됨)
+#운영환경은 ip로 들어감 db서버 주소가 노출됨. 로컬호스트라 지금은 ㄱㅊ
+#회피하려면 env에서 설정값을 하나하나 잡기
+#형상관리가 되지 않는 환경 설정 파일 별도로 만들기 = .env
+#키 = 밸류
+#mybatis 설정
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  #클래스패스는 리소스시스 안을 얘기함. 매퍼라는 디렉토리 안에 xml이라는 파일을 가진 모든것
+  type-aliases-package: org.msa.msa5spring
 logging:
   file:
     name: logs/error.log

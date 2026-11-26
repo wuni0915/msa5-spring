@@ -61,6 +61,11 @@ public class GlobalExceptionHandler {
                         (fieldError) -> fieldError.getDefaultMessage() != null ? fieldError.getDefaultMessage() : "유효하지 않은 값입니다.",
                         (existing, replacement) -> existing
                 ));
+
+        log.debug("{}\n{}", "***유효성 체크 에러***", errors);
+        //로그. 해서 사용하는 메서드들 전부다 로거 안에 있는것들? 인스턴스가 만들어짐/
+        //로거의 포맷은 {} <-이거 . 여기서 포맷은 %s 이런거임 \\ <-개행임
+        //스프링이 알아서 개체를 스트링으로 바꾼다.
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(
@@ -90,7 +95,7 @@ public class GlobalExceptionHandler {
         log.debug("디버그 로깅");
         log.info("인포 로깅");
         log.warn("워닝 로깅");
-        log.error("에러 로깅");
+        log.error("에러 로깅", e);
         //log = 롬복을 받아서 사용 가능한 변수
         //로깅 레벨 설정에 따라 출력값이 다름
         //이 코드가 있는 메서드를 반드시 실행을 시켜야 에러 결과가 나온다
