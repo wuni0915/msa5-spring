@@ -10,7 +10,7 @@ public record RegistrationRequestDTO(
         // @NotEmpty //널이냐 아니냐
         //자카르타(발리데이션)패키지가 유효성 패키지임
         String email,
-        @NotBlank(message = "비밀번호 필수 =")
+        @NotBlank(message = "비밀번호 필수")
         @Size(min = 2, max = 10, message = "비밀번호는 2~10글자")
         String password,
         String name,
@@ -18,6 +18,7 @@ public record RegistrationRequestDTO(
         @Max(value = 999, message = "나이는 최대 999살까지 입니다.")
         Integer age
         //왜 이메일만 보내면 통과지?
+
 ) {
 
 }
